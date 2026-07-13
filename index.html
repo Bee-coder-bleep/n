@@ -19,6 +19,7 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/icon.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/icon.png">
     <link rel="apple-touch-icon" href="assets/icons/icon.png">
@@ -54,120 +55,6 @@
 }
 </style>
 
-    <!-- ============================================================
-         Mobile Navigation (Hamburger Menu)
-         NOTE: This block should ideally be moved into
-         assets/css/style.css so every page (about.html, booking.html,
-         contact.html, destinations.html, flight-status.html,
-         services.html) gets the same working hamburger menu, since
-         they all share the same header/nav markup as this page.
-         ============================================================ -->
-    <style>
-        /* Hamburger icon: hidden on desktop, shown on mobile */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 26px;
-            height: 20px;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            padding: 0;
-            z-index: 1001;
-        }
-
-        .menu-toggle span {
-            display: block;
-            width: 100%;
-            height: 3px;
-            border-radius: 2px;
-            background: #06264d;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
-
-        /* Turn the three lines into an X when menu is open */
-        .menu-toggle.is-active span:nth-child(1) {
-            transform: translateY(8.5px) rotate(45deg);
-        }
-
-        .menu-toggle.is-active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .menu-toggle.is-active span:nth-child(3) {
-            transform: translateY(-8.5px) rotate(-45deg);
-        }
-
-        /* Dark overlay behind the open mobile menu */
-        .nav-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .nav-overlay.is-active {
-            display: block;
-            opacity: 1;
-        }
-
-        @media (max-width: 860px) {
-            .menu-toggle {
-                display: flex;
-            }
-
-            header .nav {
-                position: relative;
-            }
-
-            header nav {
-                position: fixed;
-                top: 0;
-                right: -280px;
-                width: 260px;
-                height: 100vh;
-                background: #ffffff;
-                box-shadow: -4px 0 20px rgba(0, 0, 0, 0.2);
-                padding: 90px 25px 25px;
-                z-index: 1000;
-                transition: right 0.35s ease;
-                overflow-y: auto;
-            }
-
-            header nav.is-active {
-                right: 0;
-            }
-
-            header nav ul {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 18px;
-            }
-
-            header nav ul li {
-                width: 100%;
-            }
-
-            header nav ul li a {
-                display: block;
-                width: 100%;
-                font-size: 16px;
-            }
-
-            .nav-right {
-                gap: 12px;
-            }
-
-            .nav-right .button {
-                display: none;
-            }
-        }
-    </style>
-
     <!-- Top Header -->
 
     <div class="topbar">
@@ -194,7 +81,7 @@
 
             </a>
 
-            <nav id="mainNav">
+            <nav>
 
                 <ul>
 
@@ -222,7 +109,7 @@
 
                 </a>
 
-                <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mainNav">
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
                     <span></span><span></span><span></span>
                 </button>
 
@@ -632,57 +519,6 @@
     </footer>
 
     <script src="assets/js/main.js"></script>
-
-    <!-- Mobile hamburger menu logic. Move into assets/js/main.js
-         so every page shares the same working toggle. -->
-    <script>
-        (function initMobileNav() {
-            const menuToggle = document.getElementById('menuToggle');
-            const mainNav = document.getElementById('mainNav');
-            const navOverlay = document.getElementById('navOverlay');
-
-            if (!menuToggle || !mainNav || !navOverlay) return;
-
-            function openMenu() {
-                mainNav.classList.add('is-active');
-                navOverlay.classList.add('is-active');
-                menuToggle.classList.add('is-active');
-                menuToggle.setAttribute('aria-expanded', 'true');
-                document.body.style.overflow = 'hidden';
-            }
-
-            function closeMenu() {
-                mainNav.classList.remove('is-active');
-                navOverlay.classList.remove('is-active');
-                menuToggle.classList.remove('is-active');
-                menuToggle.setAttribute('aria-expanded', 'false');
-                document.body.style.overflow = '';
-            }
-
-            function toggleMenu() {
-                if (mainNav.classList.contains('is-active')) {
-                    closeMenu();
-                } else {
-                    openMenu();
-                }
-            }
-
-            menuToggle.addEventListener('click', toggleMenu);
-            navOverlay.addEventListener('click', closeMenu);
-
-            // Close menu when a nav link is tapped
-            mainNav.querySelectorAll('a').forEach(function (link) {
-                link.addEventListener('click', closeMenu);
-            });
-
-            // Close menu if window is resized back to desktop width
-            window.addEventListener('resize', function () {
-                if (window.innerWidth > 860) {
-                    closeMenu();
-                }
-            });
-        })();
-    </script>
 </body>
 
 </html>
