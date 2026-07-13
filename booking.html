@@ -50,7 +50,7 @@
         }
         .contact-fields input:focus { border-color: #ffb100; }
 
-        /* ── WhatsApp submit button ── */
+        /* ── Confirm booking button ── */
         .wa-btn {
             display: inline-flex;
             align-items: center;
@@ -175,7 +175,7 @@
     <!-- Top Bar -->
     <div class="topbar">
         <div class="container">
-            <span>📱 Book via WhatsApp — Instant Confirmation</span>
+            <span>📱 Book Online — Instant Confirmation</span>
             <span>24/7 Customer Support</span>
         </div>
     </div>
@@ -208,9 +208,9 @@
         <div class="overlay"></div>
         <div class="container hero-content">
             <div class="hero-left">
-                <p class="subtitle">WHATSAPP BOOKING</p>
+                <p class="subtitle">ONLINE BOOKING</p>
                 <h1>Book Your Flight Instantly</h1>
-                <p>Fill in your flight details and we'll connect you directly with our reservations team on WhatsApp.</p>
+                <p>Fill in your flight details and we'll connect you directly with our reservations team.</p>
             </div>
         </div>
     </section>
@@ -228,7 +228,7 @@
                     <span class="step-num">2</span>Your Info
                 </div>
                 <div class="step" id="step3-indicator">
-                    <span class="step-num">3</span>WhatsApp
+                    <span class="step-num">3</span>Confirm
                 </div>
             </div>
 
@@ -331,7 +331,7 @@
 
                     <div class="title" style="margin-bottom:40px;">
                         <h2>Your Details</h2>
-                        <p style="color:#666;">We need your name and phone number to complete the booking on WhatsApp.</p>
+                        <p style="color:#666;">We need your name and phone number to complete the booking.</p>
                     </div>
 
                     <div class="contact-card">
@@ -345,10 +345,10 @@
                         </div>
                     </div>
 
-                    <!-- WhatsApp note -->
+                    <!-- Booking note -->
                     <div class="wa-note">
                         <span class="wa-note-icon">💬</span>
-                        <span>Clicking <strong>Book via WhatsApp</strong> will open WhatsApp with all your booking details pre-filled. Our reservations team will confirm your flight and send payment instructions within minutes.</span>
+                        <span>Clicking <strong>Confirm Booking</strong> will send your booking details to our reservations team. They'll confirm your flight and send payment instructions within minutes.</span>
                     </div>
 
                     <!-- Booking summary preview -->
@@ -360,7 +360,7 @@
                     <div style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap;">
                         <button type="button" id="backBtn" class="button" style="background:#06264d;">← Back</button>
                         <button type="submit" class="wa-btn">
-                            <span class="wa-icon">💬</span> Book via WhatsApp
+                            <span class="wa-icon">💬</span> Confirm Booking
                         </button>
                     </div>
 
@@ -373,7 +373,7 @@
     <!-- Why book with us -->
     <section class="destinations">
         <div class="container">
-            <div class="title"><h2>Why Book Via WhatsApp?</h2></div>
+            <div class="title"><h2>Why Book With Us?</h2></div>
             <div class="cards">
                 <div class="card">
                     <h3>⚡ Instant Response</h3>
@@ -417,11 +417,11 @@
 
     <script>
     /*========================================================
-     SKYWARD AIRLINES — WhatsApp Booking Script
-     Agent WhatsApp: +254789282177
+     SKYWARD AIRLINES — Booking Script
+     Agent Contact Number: +254789282177
     =========================================================*/
 
-    const WHATSAPP_NUMBER = "254789282177";
+    const AGENT_NUMBER = "254789282177";
 
     const airports = [
         "Nairobi — Jomo Kenyatta Intl (NBO)",
@@ -636,7 +636,7 @@
         return dt.toLocaleDateString("en-KE", { weekday:"long", year:"numeric", month:"long", day:"numeric" });
     }
 
-    /* ── Form submit → WhatsApp redirect ── */
+    /* ── Form submit → send booking request ── */
     document.getElementById("bookingForm").addEventListener("submit", function(e) {
         e.preventDefault();
 
@@ -658,7 +658,7 @@
         const promo      = document.getElementById("promoCode").value.trim();
         const fare       = document.getElementById("estimatedFare").textContent;
 
-        /* Build the WhatsApp message */
+        /* Build the booking message */
         let msg = `✈️ *SKYWARD AIRLINES — FLIGHT BOOKING REQUEST*\n\n`;
         msg += `👤 *Passenger Details*\n`;
         msg += `• Name: ${firstName} ${lastName}\n`;
@@ -676,13 +676,13 @@
         msg += `\n_Sent via Skyward Airlines online booking form._`;
 
         const encoded = encodeURIComponent(msg);
-        const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encoded}`;
+        const url = `https://wa.me/${AGENT_NUMBER}?text=${encoded}`;
 
         /* Update step indicator */
         document.getElementById("step2-indicator").classList.replace("active","done");
         document.getElementById("step3-indicator").classList.add("active");
 
-        /* Open WhatsApp */
+        /* Send booking request to reservations team */
         window.open(url, "_blank");
     });
     </script>
